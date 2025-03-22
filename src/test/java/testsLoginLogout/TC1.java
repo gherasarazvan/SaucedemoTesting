@@ -4,6 +4,7 @@ import helpMethods.ElementHelper;
 import helpMethods.SharedData;
 import org.testng.annotations.Test;
 import pages.IndexPage;
+import pages.InventoryPage;
 
 public class TC1 extends SharedData {
 
@@ -19,5 +20,8 @@ public class TC1 extends SharedData {
         indexPage.logInClick();
 
         indexPage.verifyUrl(expectedUrl);
+
+        InventoryPage inventoryPage = new InventoryPage(driver);
+        inventoryPage.logOutClick();
     }
 }

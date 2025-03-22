@@ -1,11 +1,14 @@
 package testsLoginLogout;
 
+import helpMethods.ElementHelper;
 import helpMethods.SharedData;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.IndexPage;
 
 import static pagesLocators.IndexLocators.errorMessageElement;
+import static pagesLocators.IndexLocators.userNameElement;
 
 public class TC2 extends SharedData {
 
@@ -19,7 +22,6 @@ public class TC2 extends SharedData {
         indexPage.fillUser(userNameValue);
         indexPage.fillPassword(passwordValue);
         indexPage.logInClick();
-
-        indexPage.waitForElementVisible(errorMessageElement,expectedMessage);
+        indexPage.verifyErrorMessage(expectedMessage);
     }
 }

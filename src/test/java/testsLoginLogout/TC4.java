@@ -5,22 +5,20 @@ import helpMethods.SharedData;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.IndexPage;
 
 public class TC4 extends SharedData {
 
     @Test
     public void loginLogout() {
-        ElementHelper elementHelper = new ElementHelper(driver);
-
-        By userNameElement = By.id("user-name");
-        String userNameValue = "proble_user";
-        elementHelper.fillLocator(userNameElement, userNameValue);
-
-        By passwordElement = By.id("password");
+        IndexPage indexPage = new IndexPage(driver);
+        String userNameValue = "problem_user";
         String passwordValue = "";
-        elementHelper.fillLocator(passwordElement, passwordValue);
+        String expectedMessage = "Epic sadface: Password is required";
 
-        By loginButton = By.name("login-button");
-        elementHelper.clickLocator(loginButton);
+        indexPage.fillUser(userNameValue);
+        indexPage.fillPassword(passwordValue);
+        indexPage.logInClick();
+        indexPage.verifyErrorMessage(expectedMessage);
     }
 }
