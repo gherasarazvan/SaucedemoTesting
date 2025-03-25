@@ -14,7 +14,7 @@ public class TC2 extends SharedData {
         inventoryPage.filterButtonClick();
         inventoryPage.filterZA();
 
-        inventoryPage.verifySortingBackwards(InventoryPageLocators.itemIdElement,InventoryPageLocators.filterZA);
+        inventoryPage.verifySortingDescending(InventoryPageLocators.itemIdElement);
 
         inventoryPage.logOut();
     }

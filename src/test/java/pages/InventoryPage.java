@@ -30,14 +30,14 @@ public class InventoryPage {
 
     public void logIn() {
         IndexPage indexPage = new IndexPage(driver);
-        String userNameValue = "problem_user";
+        String userNameValue = "standard_user";
         String passwordValue = "secret_sauce";
         String expectedUrl = "https://www.saucedemo.com/inventory.html";
 
         indexPage.fillUser(userNameValue);
         indexPage.fillPassword(passwordValue);
+        indexPage.validateTestData(userNameValue, passwordValue);
         indexPage.logInClick();
-
         indexPage.verifyUrl(expectedUrl);
     }
 
@@ -70,38 +70,31 @@ public class InventoryPage {
         elementHelper.clickLocator(InventoryPageLocators.filterHILO);
     }
 
-    public void verifySorting(By locator, By sortButton) {
-        driver.findElement(sortButton).click();
+    public void verifySortingAscending(By locator) {
+        elementHelper.waitForElementVisible(locator);
+        List<WebElement> elementList = driver.findElements(locator);
+        List<String> actualList = new ArrayList<>();
 
-        List<String> sortedList = new ArrayList<>();
-        List<WebElement> sortedElements = driver.findElements(locator);
-
-        for (int i = 0; i < sortedElements.size(); i++) {
-            sortedList.add(sortedElements.get(i).getText());
+        for (int index = 0; index < elementList.size(); index++) {
+            actualList.add(elementList.get(index).getText().trim());
         }
 
-        for (int i = 0; i < sortedElements.size(); i++) {
-            sortedList.add(sortedElements.get(i).getText());
-            Assert.assertEquals(sortedList.get(i), sortedList.get(i++), "Lista NU este ordonată");
+        for (int index = 0; index < actualList.size()-1; index++) {
+            Assert.assertTrue(actualList.get(index).compareTo(actualList.get(index + 1)) <= 0);
         }
     }
 
-    public void verifySortingBackwards(By locator, By sortButton) {
-        driver.findElement(sortButton).click();
+    public void verifySortingDescending(By locator) {
+        elementHelper.waitForElementVisible(locator);
+        List<WebElement> elementList = driver.findElements(locator);
+        List<String> actualList = new ArrayList<>();
 
-        List<String> sortedList = new ArrayList<>();
-        List<WebElement> sortedElements = driver.findElements(locator);
-
-        for (int index = sortedElements.size(); index > sortedElements.size(); index--) {
-            sortedList.add(sortedElements.get(index).getText());
+        for (int index = 0; index < elementList.size(); index++) {
+            actualList.add(elementList.get(index).getText().trim());
         }
 
-        for (int index = 0; index < sortedElements.size(); index++) {
-            sortedList.add(sortedElements.get(index).getText());
-            Assert.assertEquals(sortedList.get(index), sortedList.get(index++), "Lista NU este ordonată");
-            System.out.println(sortedElements.get(index));
+        for (int index = 0; index < actualList.size()-1; index++) {
+            Assert.assertTrue(actualList.get(index).compareTo(actualList.get(index + 1)) >= 0);
         }
     }
-
-
 }

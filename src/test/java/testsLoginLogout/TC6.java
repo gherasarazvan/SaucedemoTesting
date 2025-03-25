@@ -17,6 +17,7 @@ public class TC6 extends SharedData {
 
         indexPage.fillUser(userNameValue);
         indexPage.fillPassword(passwordValue);
+        indexPage.validateTestData(userNameValue, passwordValue);
         indexPage.logInClick();
         indexPage.verifyErrorMessage(expectedMessage);
     }

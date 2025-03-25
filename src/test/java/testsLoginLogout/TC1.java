@@ -1,6 +1,5 @@
 package testsLoginLogout;
 
-import helpMethods.ElementHelper;
 import helpMethods.SharedData;
 import org.testng.annotations.Test;
 import pages.IndexPage;
@@ -17,6 +16,9 @@ public class TC1 extends SharedData {
 
         indexPage.fillUser(userNameValue);
         indexPage.fillPassword(passwordValue);
+
+        indexPage.validateTestData(userNameValue, passwordValue);
+
         indexPage.logInClick();
 
         indexPage.verifyUrl(expectedUrl);

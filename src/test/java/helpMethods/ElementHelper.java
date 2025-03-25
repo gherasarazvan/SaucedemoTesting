@@ -1,6 +1,7 @@
 package helpMethods;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
@@ -14,12 +15,14 @@ public class ElementHelper {
         this.driver = driver;
     }
 
-    public void waitForElementVisible(WebElement locator) {
+    public void waitForElementVisible(WebElement locator){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(locator));
     }
 
     public void waitForElementVisible(By locator) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
     }
 
     public void clickLocator(By locator) {
@@ -44,7 +47,18 @@ public class ElementHelper {
     }
 
     public String getTextFromLocator(By locator) {
+        waitForElementVisible(locator);
         return driver.findElement(locator).getText();
+    }
+
+    public void validateTextContainsElement(WebElement element, String text){
+        waitForElementVisible(element);
+        Assert.assertTrue(element.getText().contains(text));
+    }
+
+    public void validateTextContainsAttribute(WebElement element, String text){
+        waitForElementVisible(element);
+        Assert.assertTrue(element.getAttribute("value").contains(text));
     }
 
 

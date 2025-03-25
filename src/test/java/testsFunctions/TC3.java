@@ -3,6 +3,7 @@ package testsFunctions;
 import helpMethods.SharedData;
 import org.testng.annotations.Test;
 import pages.InventoryPage;
+import pagesLocators.InventoryPageLocators;
 
 public class TC3 extends SharedData {
     @Test
@@ -12,6 +13,8 @@ public class TC3 extends SharedData {
 
         inventoryPage.filterButtonClick();
         inventoryPage.filterLOHI();
+
+        inventoryPage.verifySortingAscending(InventoryPageLocators.itemPriceElement);
 
         inventoryPage.logOut();
     }

@@ -11,4 +11,6 @@ public class InventoryPageLocators {
     public static final By filterLOHI = By.xpath("//option[@value='lohi']");
     public static final By filterHILO = By.xpath("//option[@value='hilo']");
     public static final By itemIdElement = By.xpath("//div[contains(@class, 'inventory_item_name')]");
+    public static final By itemPriceElement = By.xpath("//div[contains(@class, 'inventory_item_price')]");
+
 }

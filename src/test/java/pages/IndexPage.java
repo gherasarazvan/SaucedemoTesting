@@ -49,4 +49,9 @@ public class IndexPage {
         Assert.assertEquals(actualMessage, expectedMessage, "Mesajul de eroare nu este cel așteptat!");
     }
 
+    public void validateTestData(String userNameValue, String passwordValue){
+        elementHelper.validateTextContainsAttribute(driver.findElement(userNameElement), userNameValue );
+        elementHelper.validateTextContainsAttribute(driver.findElement(passwordElement), passwordValue);
+    }
+
 }

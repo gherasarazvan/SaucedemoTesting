@@ -2,7 +2,6 @@ package testsFunctions;
 
 import helpMethods.SharedData;
 import org.testng.annotations.Test;
-import pages.IndexPage;
 import pages.InventoryPage;
 import pagesLocators.InventoryPageLocators;
 
@@ -15,7 +14,7 @@ public class TC1 extends SharedData {
         inventoryPage.filterButtonClick();
         inventoryPage.filterAZ();
 
-        inventoryPage.verifySorting(InventoryPageLocators.itemIdElement,InventoryPageLocators.filterAZ);
+        inventoryPage.verifySortingAscending(InventoryPageLocators.itemIdElement);
 
         inventoryPage.logOut();
     }
