@@ -13,9 +13,9 @@ public class TC2 extends SharedData {
 
         inventoryPage.filterButtonClick();
         inventoryPage.filterZA();
-
         inventoryPage.verifySortingDescending(InventoryPageLocators.itemIdElement);
 
         inventoryPage.logOut();
+        inventoryPage.verifyUrl("https://www.saucedemo.com/");
     }
 }

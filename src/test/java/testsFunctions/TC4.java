@@ -3,6 +3,7 @@ package testsFunctions;
 import helpMethods.SharedData;
 import org.testng.annotations.Test;
 import pages.InventoryPage;
+import pagesLocators.InventoryPageLocators;
 
 public class TC4 extends SharedData {
     @Test
@@ -12,7 +13,9 @@ public class TC4 extends SharedData {
 
         inventoryPage.filterButtonClick();
         inventoryPage.filterHILO();
+        inventoryPage.verifyPriceSortingDescending(InventoryPageLocators.itemPriceElement);
 
         inventoryPage.logOut();
+        inventoryPage.verifyUrl("https://www.saucedemo.com/");
     }
 }

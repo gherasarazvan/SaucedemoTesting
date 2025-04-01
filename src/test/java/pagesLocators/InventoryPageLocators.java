@@ -12,5 +12,10 @@ public class InventoryPageLocators {
     public static final By filterHILO = By.xpath("//option[@value='hilo']");
     public static final By itemIdElement = By.xpath("//div[contains(@class, 'inventory_item_name')]");
     public static final By itemPriceElement = By.xpath("//div[contains(@class, 'inventory_item_price')]");
-
+    public static final By allItemsPage = By.id("inventory_sidebar_link");
+    public static final By aboutPage = By.id("about_sidebar_link");
+    public static final By resetAppStateButton = By.id("reset_sidebar_link");
+    public static final By cartButton = By.xpath("//a[@class='shopping_cart_link']");
+    public static final By removeButton = By.xpath("//button[contains(text(), 'Remove')]");
+    public static final By addToCartButtons = By.xpath("//button[contains(text(),'Add to cart')]");
 }

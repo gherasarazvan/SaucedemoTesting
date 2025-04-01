@@ -13,9 +13,9 @@ public class TC3 extends SharedData {
 
         inventoryPage.filterButtonClick();
         inventoryPage.filterLOHI();
-
-        inventoryPage.verifySortingAscending(InventoryPageLocators.itemPriceElement);
+        inventoryPage.verifyPriceSortingAscending(InventoryPageLocators.itemPriceElement);
 
         inventoryPage.logOut();
+        inventoryPage.verifyUrl("https://www.saucedemo.com/");
     }
 }

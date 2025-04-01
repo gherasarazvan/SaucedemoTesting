@@ -20,7 +20,7 @@ public class InventoryPage {
     }
 
     public void burgerMenuClick() {
-        elementHelper.clickLocator(InventoryPageLocators.burgerMenuButton);
+        elementHelper.clickJsLocator(driver.findElement(InventoryPageLocators.burgerMenuButton));
     }
 
     public void logOutClick() {
@@ -79,7 +79,7 @@ public class InventoryPage {
             actualList.add(elementList.get(index).getText().trim());
         }
 
-        for (int index = 0; index < actualList.size()-1; index++) {
+        for (int index = 0; index < actualList.size() - 1; index++) {
             Assert.assertTrue(actualList.get(index).compareTo(actualList.get(index + 1)) <= 0);
         }
     }
@@ -93,8 +93,91 @@ public class InventoryPage {
             actualList.add(elementList.get(index).getText().trim());
         }
 
-        for (int index = 0; index < actualList.size()-1; index++) {
+        for (int index = 0; index < actualList.size() - 1; index++) {
             Assert.assertTrue(actualList.get(index).compareTo(actualList.get(index + 1)) >= 0);
         }
     }
+
+    public void verifyPriceSortingAscending(By locator) {
+        elementHelper.waitForElementVisible(locator);
+        List<WebElement> priceElements = driver.findElements(locator);
+        List<Double> actualPrices = new ArrayList<>();
+
+        for (WebElement priceElement : priceElements) {
+            String priceText = priceElement.getText().replace("$", "").trim();
+            actualPrices.add(Double.parseDouble(priceText));
+        }
+
+        for (int index = 0; index < actualPrices.size() - 1; index++) {
+            Assert.assertTrue(actualPrices.get(index) <= actualPrices.get(index + 1));
+        }
+    }
+
+    public void verifyPriceSortingDescending(By locator) {
+        elementHelper.waitForElementVisible(locator);
+        List<WebElement> priceElements = driver.findElements(locator);
+        List<Double> actualPrices = new ArrayList<>();
+
+        for (WebElement priceElement : priceElements) {
+            String priceText = priceElement.getText().replace("$", "").trim();
+            actualPrices.add(Double.parseDouble(priceText));
+        }
+
+        for (int index = 0; index < actualPrices.size() - 1; index++) {
+            Assert.assertTrue(actualPrices.get(index) >= actualPrices.get(index + 1));
+        }
+    }
+
+    public void aboutButtonClick() {
+        burgerMenuClick();
+        elementHelper.clickLocator(InventoryPageLocators.aboutPage);
+    }
+
+    public void allItemsPageClick() {
+        burgerMenuClick();
+        elementHelper.clickLocator(InventoryPageLocators.allItemsPage);
+    }
+
+    public void resetAppStateButtonClick() {
+        burgerMenuClick();
+        elementHelper.clickLocator(InventoryPageLocators.resetAppStateButton);
+    }
+
+    public void verifyUrl(String expectedUrl) {
+        String actualUrl = driver.getCurrentUrl();
+        Assert.assertEquals(actualUrl, expectedUrl, "URL-ul curent nu este cel așteptat!");
+    }
+
+    public void cartItemPageClick() {
+        elementHelper.clickLocator(InventoryPageLocators.cartButton);
+    }
+
+    public void clickAddToCartByIndex(By locator, List<Integer> wantedProducts) {
+        elementHelper.waitForElementVisible(locator);
+        List<WebElement> addToCartButtons = driver.findElements(locator);
+
+        for (Integer index : wantedProducts) {
+            if (index >= 0 && index < addToCartButtons.size()) {
+                elementHelper.clickLocator(addToCartButtons.get(index));
+                System.out.println("Click pe butonul 'Add to cart' pentru produsul cu indexul: " + index);
+            } else {
+                System.out.println("Index invalid: " + index + ". Pe site sunt doar " + addToCartButtons.size() + " produse.");
+            }
+        }
+    }
+
+    public void deleteFromCartByIndex(By locator, List<Integer> deletedProducts) {
+        elementHelper.waitForElementVisible(locator);
+        List<WebElement> removeFromCartButtons = driver.findElements(locator);
+
+        for (Integer index : deletedProducts) {
+            if (index >= 0 && index < removeFromCartButtons.size()) {
+                removeFromCartButtons.get(index).click();
+                System.out.println("Produsul cu indexul " + index + " a fost eliminat din coș.");
+            } else {
+                System.out.println("Index invalid: " + index + ". În coș sunt doar " + removeFromCartButtons.size() + " produse.");
+            }
+        }
+    }
 }
+

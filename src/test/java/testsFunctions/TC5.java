@@ -5,17 +5,13 @@ import org.testng.annotations.Test;
 import pages.InventoryPage;
 import pagesLocators.InventoryPageLocators;
 
-public class TC1 extends SharedData {
+public class TC5 extends SharedData {
+
     @Test
     public void functions() {
         InventoryPage inventoryPage = new InventoryPage(driver);
         inventoryPage.logIn();
-
-        inventoryPage.filterButtonClick();
-        inventoryPage.filterAZ();
-        inventoryPage.verifySortingAscending(InventoryPageLocators.itemIdElement);
-
-        inventoryPage.logOut();
-        inventoryPage.verifyUrl("https://www.saucedemo.com/");
+        inventoryPage.aboutButtonClick();
+        inventoryPage.verifyUrl("https://saucelabs.com/");
     }
 }
