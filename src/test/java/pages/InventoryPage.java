@@ -159,7 +159,7 @@ public class InventoryPage {
         for (Integer index : wantedProducts) {
             if (index >= 0 && index < addToCartButtons.size()) {
                 elementHelper.clickLocator(addToCartButtons.get(index));
-                System.out.println("Click pe butonul 'Add to cart' pentru produsul cu indexul: " + index);
+                System.out.println("Click pe butonul 'Add to cart' pentru produsul: " + index);
             } else {
                 System.out.println("Index invalid: " + index + ". Pe site sunt doar " + addToCartButtons.size() + " produse.");
             }
@@ -167,17 +167,21 @@ public class InventoryPage {
     }
 
     public void deleteFromCartByIndex(By locator, List<Integer> deletedProducts) {
-        elementHelper.waitForElementVisible(locator);
-        List<WebElement> removeFromCartButtons = driver.findElements(locator);
-
         for (Integer index : deletedProducts) {
+            elementHelper.waitForElementVisible(locator);
+            List<WebElement> removeFromCartButtons = driver.findElements(locator);
+
             if (index >= 0 && index < removeFromCartButtons.size()) {
                 removeFromCartButtons.get(index).click();
-                System.out.println("Produsul cu indexul " + index + " a fost eliminat din coș.");
+                System.out.println("Produsul de pe poziția " + index + " a fost eliminat din coș.");
             } else {
                 System.out.println("Index invalid: " + index + ". În coș sunt doar " + removeFromCartButtons.size() + " produse.");
             }
         }
+    }
+
+    public void closeBurgerMenuPage(){
+        elementHelper.clickLocator(InventoryPageLocators.closeBurgerMenuButton);
     }
 }
 

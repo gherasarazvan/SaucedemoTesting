@@ -18,4 +18,5 @@ public class InventoryPageLocators {
     public static final By cartButton = By.xpath("//a[@class='shopping_cart_link']");
     public static final By removeButton = By.xpath("//button[contains(text(), 'Remove')]");
     public static final By addToCartButtons = By.xpath("//button[contains(text(),'Add to cart')]");
+    public static final By closeBurgerMenuButton = By.id("react-burger-cross-btn");
 }

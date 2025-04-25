@@ -1,5 +1,6 @@
 package testsFunctions;
 
+import helpMethods.AlertHelper;
 import helpMethods.SharedData;
 import org.testng.annotations.Test;
 import pages.InventoryPage;
