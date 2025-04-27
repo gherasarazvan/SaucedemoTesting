@@ -1,16 +1,21 @@
 package pages;
 
+import helpMethods.ElementHelper;
+import loggerUtility.LoggerUtility;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import pagesLocators.CartPageLocators;
 
 public class CartPage {
 
     private WebDriver driver;
+    private ElementHelper elementHelper;
 
     public CartPage(WebDriver driver) {
         this.driver = driver;
+        elementHelper = new ElementHelper(driver);
     }
 
     public void verifyCartTotalProducts(int expectedProductsNumber) {
@@ -20,13 +25,19 @@ public class CartPage {
             WebElement cartBadge = driver.findElement(By.className("shopping_cart_badge"));
             String numberText = cartBadge.getText();
             totalProducts = Integer.parseInt(numberText);
-            System.out.println("Total produse în coș: " + totalProducts);
+            System.out.println("Total products in cart: " + totalProducts);
         } else {
-            System.out.println("Niciun produs în coș.");
+            System.out.println("No products added to cart");
         }
 
-        Assert.assertEquals(totalProducts, expectedProductsNumber, "Numărul așteptat de produse nu corespunde!");
+        Assert.assertEquals(totalProducts, expectedProductsNumber, "The expected number of products does not match");
+
+        LoggerUtility.infoTest("Products number was verified");
     }
 
+    public void checkOutClick(){
+        elementHelper.clickLocator(CartPageLocators.checkOutButton);
+        LoggerUtility.infoTest("The user clicks Checkout button");
+    }
 
 }

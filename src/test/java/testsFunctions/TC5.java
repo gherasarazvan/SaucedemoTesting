@@ -13,6 +13,7 @@ public class TC5 extends SharedData {
         InventoryPage inventoryPage = new InventoryPage(driver);
         inventoryPage.logIn();
 
+        inventoryPage.burgerMenuClick();
         inventoryPage.aboutButtonClick();
         inventoryPage.verifyUrl("https://saucelabs.com/");
     }

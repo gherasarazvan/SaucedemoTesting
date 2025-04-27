@@ -4,18 +4,21 @@
     <test name="All Tests Suite 1" >
         <packages>
             <package name="testsLoginLogout.*"/>
+            <package name="testsFunctions.*"/>
         </packages>
     </test> <!-- Test -->
 
     <test name="All Tests Suite 2" >
         <packages>
             <package name="testsLoginLogout.*"/>
+            <package name="testsFunctions.*"/>
         </packages>
     </test> <!-- Test -->
 
     <test name="All Tests Suite 3" >
         <packages>
             <package name="testsLoginLogout.*"/>
+            <package name="testsFunctions.*"/>
         </packages>
     </test> <!-- Test -->
 </suite> <!-- Suite -->

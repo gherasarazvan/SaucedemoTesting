@@ -1,19 +1,16 @@
 package testsFunctions;
 
-import helpMethods.AlertHelper;
 import helpMethods.SharedData;
 import org.testng.annotations.Test;
 import pages.CartPage;
 import pages.CheckOutPage;
 import pages.InventoryPage;
-import pagesLocators.CartPageLocators;
-import pagesLocators.CheckOutPageLocators;
 import pagesLocators.InventoryPageLocators;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class TC6 extends SharedData {
+public class TC9 extends SharedData {
 
     @Test
     public void functions() {
@@ -52,12 +49,13 @@ public class TC6 extends SharedData {
 
 
         checkOutPage.continueButtonClick();
-        checkOutPage.fillCheckOutValues();
+        checkOutPage.fillCheckOutValuesFirstNameAndLastName();
+
 
         checkOutPage.continueButtonClick();
 
-        checkOutPage.finishShopping();
 
-        checkOutPage.validateOrderText();
+        checkOutPage.validateErrorMessagePostalCode();
+
     }
 }

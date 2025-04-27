@@ -1,6 +1,7 @@
 package pages;
 
 import helpMethods.ElementHelper;
+import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -41,12 +42,12 @@ public class IndexPage {
 
     public void verifyUrl(String expectedUrl) {
         String actualUrl = driver.getCurrentUrl();
-        Assert.assertEquals(actualUrl, expectedUrl, "URL-ul curent nu este cel așteptat!");
+        Assert.assertEquals(actualUrl, expectedUrl, "URLs dont match!");
     }
 
     public void verifyErrorMessage(String expectedMessage) {
         String actualMessage = elementHelper.getTextFromLocator(errorMessageElement);
-        Assert.assertEquals(actualMessage, expectedMessage, "Mesajul de eroare nu este cel așteptat!");
+        Assert.assertEquals(actualMessage, expectedMessage, "This is not the expected error message!");
     }
 
     public void validateTestData(String userNameValue, String passwordValue){
